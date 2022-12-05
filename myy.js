@@ -328,22 +328,22 @@ if (localStorage.gr5) {
 document.getElementById('ptm').addEventListener('paste', (v) => {pastemn(v)})
 document.getElementById('ptm1').addEventListener('paste', (v) => {pastemn(v);})
 function pastemn(v) {
-  setTimeout(() => {
-    let vv=v.path[0].value;
-    if((vv.includes('+91'))||(vv.includes(' '))){
-      let nm=vv.replace(/ /g,'');
-      if((nm.length==13)||nm.includes('+91')){
-        v.path[0].value=nm.split('+91')[1];
-       }else {
-        v.path[0].value=nm.slice(-10);
+    setTimeout(() => {
+       // console.log('jkjkj',v);
+      let vv=v.target.value;
+      if((vv.includes('+91'))||(vv.includes(' '))){
+        let nm=vv.replace(/ /g,'');
+        if((nm.length==13)||nm.includes('+91')){
+          v.target.value=nm.split('+91')[1];
+         }else {
+          v.target.value=nm.slice(-10);
+        }
       }
-    }
-    v.path[0].dispatchEvent(new Event('input'));
-    //document.getElementById('ptmn').innerHTML='- - -';
-    console.log('onpaste');
-  }, 10);
-}
-
+      v.target.dispatchEvent(new Event('input'));
+      //document.getElementById('ptmn').innerHTML='- - -';
+      console.log('onpaste');
+    }, 10);
+  }
 // oniput search from mobile no.
 function inmn(v) {
   //console.log(vv)
