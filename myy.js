@@ -617,11 +617,15 @@ let om='<hr style="border-top: 2px dashed #000;padding: 0;margin: 0;">';
   })
   selod5={};
   setTimeout(() => {
-    let myWindow = window.open();
-    myWindow.document.write(htmladd);myWindow.document.body.setAttribute('onclick','print()');
-    myWindow.document.body.addEventListener("click", () => {setTimeout(() => {
-      myWindow.close();
-    }, 500); });
+    let myWindow = window.open("", "_blank");let body=myWindow.document.body;
+    body.setAttribute('onclick','print()');
+    body.innerHTML=htmladd);//body.setAttribute('onclick','print()');
+    // body.addEventListener("click", () => {setTimeout(() => {
+    //   myWindow.close();
+    // }, 500); });
+    body.addEventListener("click", () => {
+      print();
+    });
   }, 10);
   }else{
     alert('Select order first');

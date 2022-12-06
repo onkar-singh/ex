@@ -423,7 +423,7 @@ document.getElementById('uyt4').innerHTML='';
   myW = window.open("", "_blank");let winbody=myW.document.body;
   winbody.setAttribute('onclick','print()');
   winbody.innerHTML+="<style>body{margin: 0 8px}table tbody:last-child {display:none}div {padding: 5px;margin: 5px 0;overflow: auto;font-size: 18px;font-family: sans-serif;font-weight: 600;}table, th, td {border: 1px solid black;border-collapse: collapse;text-align: center;font-weight: 600;}#tblom1 {width: 100%;}#tblom1  tbody tr:first-child{color:blue;background: #ffdfdd;}</style><div id='my56'></div>";
-  winbody.addEventListener("click", () => myW.close());
+  //winbody.addEventListener("click", () => myW.close());
   // winbody.addEventListener("click", () => {setTimeout(() => {
   //   myW.close();
   // }, 500); });
