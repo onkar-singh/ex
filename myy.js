@@ -327,7 +327,8 @@ if (localStorage.gr5) {
 // on paste mobile no.
 document.getElementById('ptm').addEventListener('paste', (v) => {pastemn(v)})
 document.getElementById('ptm1').addEventListener('paste', (v) => {pastemn(v);})
-function pastemn(v) {
+
+  function pastemn(v) {
     setTimeout(() => {
        // console.log('jkjkj',v);
       let vv=v.target.value;
@@ -344,6 +345,22 @@ function pastemn(v) {
       console.log('onpaste');
     }, 10);
   }
+//   setTimeout(() => {
+//     let vv=v.path[0].value;
+//     if((vv.includes('+91'))||(vv.includes(' '))){
+//       let nm=vv.replace(/ /g,'');
+//       if((nm.length==13)||nm.includes('+91')){
+//         v.path[0].value=nm.split('+91')[1];
+//        }else {
+//         v.path[0].value=nm.slice(-10);
+//       }
+//     }
+//     v.path[0].dispatchEvent(new Event('input'));
+//     //document.getElementById('ptmn').innerHTML='- - -';
+//     console.log('onpaste');
+//   }, 10);
+// }
+
 // oniput search from mobile no.
 function inmn(v) {
   //console.log(vv)
@@ -580,7 +597,8 @@ function genid(v,i,b='a'){
 
 // print address
 function printadd() {
-  let htmladd='<style>body{margin: 0; padding: 0;}@media print {#pbr{page-break-after: always;display: block;}}.p2 span {font-weight: 400;}.p1{font-size: 35px;font-weight: initial;}.p2{font-size: 25px;}.p2 div{font-weight:bold}</style>';
+  if(Object.keys(selod5).length){
+  let htmladd='<style>body{margin: 0; padding: 0;color: #000; background: #fff;}@media print {#pbr{page-break-after: always;display: block;}}.p2 span {font-weight: 400;}.p1{font-size: 35px;font-weight: initial;}.p2{font-size: 25px;}.p2 div{font-weight:bold}</style>';
   Object.keys(selod5).forEach(function (v,i) {
       (async()=> { // get party address
       let od='a'+selg.slice(-1)+v.match(/\d+/g)[0];//'as63'
@@ -589,7 +607,7 @@ function printadd() {
       cadd='<h1 class="p1"><b>To </b>- '+v[0].cn+', '+v[0].mn1+', '+v[0].mn1+'<br>'+v[0].add+', '+v[0].pin+'</span></h1>';
       radd='<h1><span class="p2"><div><b>Return address if not delivered</b><br></div><span>Own Knitted, 9336695049</span><br><span>F-120, Shutter wali gali, near Gujjar chowk, Khanpur Delhi, 110062</span></span></h1>';
       });
-let om='<b>✂ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _</b>';
+let om='<hr style="border-top: 2px dashed #000;padding: 0;margin: 0;">';
       if (!((i+1)%3)) {
           om='<span id="pbr"></span>';
       }
@@ -605,5 +623,17 @@ let om='<b>✂ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
       myWindow.close();
     }, 500); });
   }, 10);
+  }else{
+    alert('Select order first');
   }
+}
   
+function download(link,name) {
+let iframe = document.createElement("iframe");
+iframe.style.display = 'none';
+document.body.appendChild(iframe);
+iframe.contentWindow.document.body.innerHTML="<a href='"+link+"' id='dlink' download='"+name+"'>Download</a>";
+iframe.contentWindow.document.getElementById('dlink').click();
+setTimeout(() => iframe.remove(), 800);
+}
+

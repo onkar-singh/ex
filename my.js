@@ -28,7 +28,7 @@ async function getods(gd) {
     console.log('error in getods() fn-', error)
   }
 }
- let db = new Dexie("party");db.version(1).stores({pt: "id,cn,mn1,mn2,*ods"});
+ let db = new Dexie("party");db.version(2).stores({pt: "id,cn,mn1,mn2,*ods"});
 var selod5={};var zsr={};
 //var om=document.getElementById("tb").innerHTML;
 var od={};var zxc=0; if(localStorage.clickcount) {zxc=localStorage.clickcount;}
@@ -86,7 +86,7 @@ document.getElementById("type"+m).innerHTML=tblo;
 //gen. table for Each tab on load
 window.onload = function(){
   document.querySelectorAll('.bar button').forEach(
- function(e, i, a) {
+ function(e, i) {
   gentbl(i);
   });
 };
@@ -350,42 +350,42 @@ function clickCounter() {
     zxc=localStorage.clickcount;
 }
 
-// generate countinious oder list for print pdf
-function gentbls() {
-let hjk=document.querySelectorAll('.city table td input');
-for (let t of hjk) {
-    if(t.value){t.setAttribute('value',t.value)}
-}
-let zxc1= document.querySelectorAll('#tb [id]');
-for (let t of zxc1) {
-    t.id='';
-}
-let uy3=document.getElementById('tot').outerHTML;
-var tbt="<table class='w3-table-all w3-centered'>";
-let uy=document.querySelectorAll('.city');let uy11=uy.length;
-for (let e = 0; e < uy11; e++) {
-    if(!(uy[e].style.display === '') && (uy[e].style.display === 'block')){
-        //console.log('true',uy[e]);
-      let uy1=uy[e].querySelectorAll('tbody tr');let uy111=uy1.length;
-       let uy2=uy[e].querySelector('thead tr.w3-red').outerHTML;
-        tbt+=uy2;
-        for (let e1 = 0; e1 < uy111; e1++) {
-               if((uy1[e1].style.display === '') || (uy1[e1].style.display === 'block')){
-                //console.log(uy1[e1]);
-                let yui=uy1[e1].outerHTML;
-                tbt+=yui;
-            }  
-        }
-    }else{//console.log('false',uy[e]); 
-    }   
-}
+// // generate countinious oder list for print pdf
+// function gentbls() {
+// let hjk=document.querySelectorAll('.city table td input');
+// for (let t of hjk) {
+//     if(t.value){t.setAttribute('value',t.value)}
+// }
+// let zxc1= document.querySelectorAll('#tb [id]');
+// for (let t of zxc1) {
+//     t.id='';
+// }
+// let uy3=document.getElementById('tot').outerHTML;
+// var tbt="<table class='w3-table-all w3-centered'>";
+// let uy=document.querySelectorAll('.city');let uy11=uy.length;
+// for (let e = 0; e < uy11; e++) {
+//     if(!(uy[e].style.display === '') && (uy[e].style.display === 'block')){
+//         //console.log('true',uy[e]);
+//       let uy1=uy[e].querySelectorAll('tbody tr');let uy111=uy1.length;
+//        let uy2=uy[e].querySelector('thead tr.w3-red').outerHTML;
+//         tbt+=uy2;
+//         for (let e1 = 0; e1 < uy111; e1++) {
+//                if((uy1[e1].style.display === '') || (uy1[e1].style.display === 'block')){
+//                 //console.log(uy1[e1]);
+//                 let yui=uy1[e1].outerHTML;
+//                 tbt+=yui;
+//             }  
+//         }
+//     }else{//console.log('false',uy[e]); 
+//     }   
+// }
  
-let zh1="<div class='w3-quarter w3-tag'>"+(Number(zxc)+1)+"</div>";
-document.getElementById('tb').innerHTML+="<div class='pb' style='border: 2px solid'>"+zh1+uy3+tbt+"</table></div><div style='break-after:always'></div>";
-//document.querySelector('#tb .w3-tag').style.display='';
-//document.querySelector('#tb #tot :last-child .w3-tag').innerHTML=zxc;
-//console.log(uy3+tbt+"</table>");
-}// End //s generate countinious oder list for print pdf
+// let zh1="<div class='w3-quarter w3-tag'>"+(Number(zxc)+1)+"</div>";
+// document.getElementById('tb').innerHTML+="<div class='pb' style='border: 2px solid'>"+zh1+uy3+tbt+"</table></div><div style='break-after:always'></div>";
+// //document.querySelector('#tb .w3-tag').style.display='';
+// //document.querySelector('#tb #tot :last-child .w3-tag').innerHTML=zxc;
+// //console.log(uy3+tbt+"</table>");
+// }// End //s generate countinious oder list for print pdf
 
 // onload model get Customer Name and gst
 function gonext() {
@@ -496,7 +496,7 @@ Object.keys(jk).forEach(function(t) {
 
  for (let u in selod5) {document.getElementById(u).checked=false;}
  selod5={};
-}else{alert('Kya timepass ker raha h!\nPahle order select ker le')}
+}else{alert('Select order first')}
 }
 
 // go from close model view 
@@ -608,8 +608,6 @@ function stockm() {
  setTimeout(function () {document.getElementById('p781').click()}, 100);
  //document.getElementById('p781').click()
 }
-
-
 
 function indb(d) {
 selg=d.name;
@@ -852,8 +850,10 @@ function omak(n,i,a){
         csv.push(row.join(separator));
     }
     let csv_string = csv.join('\n');
-    // Download it
     let filename = oderno+ '.csv';
+    let link9='data:text/csv;charset=utf-8,' + encodeURIComponent(csv_string);
+    // Download it
+    download(link9,filename);
     // let link = document.createElement('a');
     // link.style.display = 'none';
     // link.setAttribute('target', '_blank');
