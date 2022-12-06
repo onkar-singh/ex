@@ -598,7 +598,7 @@ function genid(v,i,b='a'){
 // print address
 function printadd() {
   if(Object.keys(selod5).length){
-  let htmladd='<style>body{margin: 0; padding: 0;color: #000; background: #fff;}@media print {#pbr{page-break-after: always;display: block;}}.p2 span {font-weight: 400;}.p1{font-size: 35px;font-weight: initial;}.p2{font-size: 25px;}.p2 div{font-weight:bold}</style>';
+  let htmladd='<style>a{text-decoration: none;color: black;}body{margin: 0; padding: 0;color: #000; background: #fff;}@media print {#pbr{page-break-after: always;display: block;}}.p2 span {font-weight: 400;}.p1{font-size: 32px!important;font-weight: initial;}.p2{font-size: 22px!important;}.p2 div{font-weight:bold}</style>';
   Object.keys(selod5).forEach(function (v,i) {
       (async()=> { // get party address
       let od='a'+selg.slice(-1)+v.match(/\d+/g)[0];//'as63'
