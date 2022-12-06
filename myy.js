@@ -115,7 +115,7 @@ function kjhu(v) {//alert(v.id);document.getElementById('frt').innerText=.innerT
            let jk=qs1[u].split('\t');
             for (let i = 0; i < jk.length; i++) {
                 var wer6;
-                if(i===0){wer6=jk[i]}else if(jk[i]){
+              if(i===0){wer6=jk[i]}else if(jk[i]){
                    // console.log(wer5,wer6,jk[i],i); // t,c,value,index
                     let ty6=document.querySelector('#'+wer5+' #'+wer6.replace(/\s+/, "")+' td:nth-child('+(i+1)+') input');
                    ty6.value=jk[i];triggerInput(ty6);
@@ -127,7 +127,7 @@ function kjhu(v) {//alert(v.id);document.getElementById('frt').innerText=.innerT
 
 document.getElementById('id01').style.display='';
 document.querySelector("div.bar button.tablink[onclick]").click();
- document.getElementById('btn_convert').style.display='none';
+document.getElementById('btn_convert').style.display='none';
 document.getElementById('upd5').style.display='';
 function triggerInput(v) {
 let event = new Event('input', {'bubbles': true,'cancelable': true});
@@ -634,7 +634,7 @@ let om='<hr style="border-top: 2px dashed #000;padding: 0;margin: 0;">';
   
 function download(link,name) {
 let iframe = document.createElement("iframe");
-iframe.style.display = 'none';
+//iframe.style.display = 'none';
 document.body.appendChild(iframe);
 iframe.contentWindow.document.body.innerHTML="<a href='"+link+"' id='dlink' download='"+name+"'>Download</a>";
 iframe.contentWindow.document.getElementById('dlink').click();

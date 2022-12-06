@@ -4,24 +4,39 @@
 async function getods(gd) {
   try {
     let st = new Localbase('st');
-    let allods1 = await st.collection(gd).get();
-    let doc = await allods1;
-    
-    doc.sort(function(a,b) { // sort by id
-    return b.id - a.id;
-    });
-      for (let i in doc) {
-          //console.log(doc[i])
-          if(Number(doc[i].tot)){ifz="ndelt"}else{ifz="delt"};
-          if(doc[i].gst){ gstr="<span>GST</span>"}else{ gstr="<span style='padding: 0 1.55em'></span>"};
+    let allod=await st.collection(gd).get().then(v => v.reverse());
+   // allod.reverse();
+    for await (const i of allod) {
+          //console.log(i)
+          if(Number(i.tot)){ifz="ndelt"}else{ifz="delt"};
+          if(i.gst){ gstr="<span>GST</span>"}else{ gstr="<span style='padding: 0 1.55em'></span>"};
 
-          let inp="<input onclick='selod(this)' id='"+'od'+doc[i].id+"' class='w3-check' type='checkbox'>";let lid='';
+          let inp="<input onclick='selod(this)' id='"+'od'+i.id+"' class='w3-check' type='checkbox'>";let lid='';
           let exio='';let funex='';
-          if (gd == 'inst') {lid='data-gd='+doc[i].cn;exio='Export CSV';funex="onclick='expt(this)'";inp='';} 
-          vtag="<span id='vtag' "+funex+"><span name="+'od'+doc[i].id+">"+exio+"</span></span>";
+          if (gd == 'inst') {lid='data-gd='+i.cn;exio='Export CSV';funex="onclick='expt(this)'";inp='';} 
+          vtag="<span id='vtag' "+funex+"><span name="+'od'+i.id+">"+exio+"</span></span>";
 
-          document.getElementById('oderli').innerHTML+="<li "+lid+" class='w3-display-container "+ifz+"'>"+inp+' '+doc[i].id+'. '+doc[i].cn+vtag+"<span onclick='opodli(this)'  "+"for='"+'od'+doc[i].id+"'>"+doc[i].tot+' '+ gstr+' '+doc[i].dt.split('/20')[0]+"</span></li>";
+          document.getElementById('oderli').innerHTML+="<li "+lid+" class='w3-display-container "+ifz+"'>"+inp+' '+i.id+'. '+i.cn+vtag+"<span onclick='opodli(this)'  "+"for='"+'od'+i.id+"'>"+i.tot+' '+ gstr+' '+i.dt.split('/20')[0]+"</span></li>";
       }
+    // let st = new Localbase('st');
+    // let allods1 = await st.collection(gd).get();
+    // let doc = await allods1;
+    
+    // doc.sort(function(a,b) { // sort by id
+    // return b.id - a.id;
+    // });
+    //   for (let i in doc) {
+    //       //console.log(doc[i])
+    //       if(Number(doc[i].tot)){ifz="ndelt"}else{ifz="delt"};
+    //       if(doc[i].gst){ gstr="<span>GST</span>"}else{ gstr="<span style='padding: 0 1.55em'></span>"};
+
+    //       let inp="<input onclick='selod(this)' id='"+'od'+doc[i].id+"' class='w3-check' type='checkbox'>";let lid='';
+    //       let exio='';let funex='';
+    //       if (gd == 'inst') {lid='data-gd='+doc[i].cn;exio='Export CSV';funex="onclick='expt(this)'";inp='';} 
+    //       vtag="<span id='vtag' "+funex+"><span name="+'od'+doc[i].id+">"+exio+"</span></span>";
+
+    //       document.getElementById('oderli').innerHTML+="<li "+lid+" class='w3-display-container "+ifz+"'>"+inp+' '+doc[i].id+'. '+doc[i].cn+vtag+"<span onclick='opodli(this)'  "+"for='"+'od'+doc[i].id+"'>"+doc[i].tot+' '+ gstr+' '+doc[i].dt.split('/20')[0]+"</span></li>";
+    //   }
   }
   catch(error) {
     alert('error in getods() fn-', error)
