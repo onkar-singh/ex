@@ -641,17 +641,6 @@ let om='<hr style="border-top: 2px dashed #000;padding: 0;margin: 0;">';
 // setTimeout(() => iframe.remove(), 4000);
 // }
 
-// function downl(imgurl,imgnm){
-//   let htl="<a id='link55' href='"+imgurl+"' download='"+imgnm+"'>hjhj</a>";
-//   let iframe = document.createElement('iframe');
-//   document.body.appendChild(iframe);
-//   iframe.contentWindow.document.open();
-//   iframe.contentWindow.document.write(htl);
-//   iframe.contentWindow.document.getElementById('link55').click();
-//   iframe.contentWindow.document.close();
-//    setTimeout(function(){ iframe.remove()}, 5000);
-//   }
-
 function download(imgurl,imgnm){
   let htl="<a id='link55' href='"+imgurl+"' download='"+imgnm+"'>hjhj</a>";
   let iframe = document.createElement('iframe');
@@ -660,6 +649,6 @@ function download(imgurl,imgnm){
   iframe.contentWindow.document.write(htl);
   iframe.contentWindow.document.getElementById('link55').click();
   iframe.contentWindow.document.close();
-   setTimeout(function(){ iframe.remove()}, 5000);
+   setTimeout(function(){ iframe.remove()}, 4000);
   }
 
