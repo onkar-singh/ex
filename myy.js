@@ -619,7 +619,7 @@ let om='<hr style="border-top: 2px dashed #000;padding: 0;margin: 0;">';
   setTimeout(() => {
     let myWindow = window.open("", "_blank");let body=myWindow.document.body;
     body.setAttribute('onclick','print()');
-    body.innerHTML=htmladd);//body.setAttribute('onclick','print()');
+    body.innerHTML=htmladd;//body.setAttribute('onclick','print()');
     // body.addEventListener("click", () => {setTimeout(() => {
     //   myWindow.close();
     // }, 500); });
